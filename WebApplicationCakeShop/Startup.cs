@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using WebApplicationCakeShop.Data;
 
 namespace WebApplicationCakeShop
 {
@@ -24,6 +26,9 @@ namespace WebApplicationCakeShop
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDbContext<WebApplicationCakeShopContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("WebApplicationCakeShopContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,7 +55,7 @@ namespace WebApplicationCakeShop
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Cakes}/{action=Create}/{id?}");
             });
         }
     }
