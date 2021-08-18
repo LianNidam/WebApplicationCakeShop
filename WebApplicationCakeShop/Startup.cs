@@ -55,7 +55,7 @@ namespace WebApplicationCakeShop
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Cakes}/{action=Create}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
