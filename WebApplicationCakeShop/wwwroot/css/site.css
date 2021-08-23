@@ -91,6 +91,10 @@ body {
     padding: inherit
 }
 
+.display-4 text-center {
+    font: bold;
+}
+
 /** {
     box-sizing:border-box;
 }
