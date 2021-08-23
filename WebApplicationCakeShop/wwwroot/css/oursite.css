@@ -1,1 +1,35 @@
 ﻿
+.d-block{
+    height: 200px;
+    width: 50px;
+}
+
+/*.carousel-pad {
+   padding: 10px 10px 50px 10px;
+    z-index: auto;
+}*/
+
+/*.carousel-inner {
+    height: 20px;
+    width: 20px;
+}
+
+.carousel-item {
+    height: 25px;
+    width: 25px;
+}*/
+
+.carousel-item,
+.carousel-inner,
+.carousel-inner img {
+    height: 50%;
+    width: 30%;
+}
+
+.carousel-item {
+    text-align: center;
+}
+
+.carousel {
+    height: 50px;
+}
