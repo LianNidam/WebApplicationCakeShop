@@ -32,17 +32,14 @@ namespace WebApplicationCakeShop.Models
 
 
         //Image
-        [Required]
+        
         [Display(Name = "Photo url")]
         public string PhotosUrl1 { get; set; }
         [Display(Name = "Photo url")]
-        [Required]
         public string PhotosUrl2 { get; set; }
         [Display(Name = "Photo url")]
-        [Required]
         public string PhotosUrl3 { get; set; }
         [Display(Name = "Photo url")]
-        [Required]
         public string PhotosUrl4 { get; set; }
 
 

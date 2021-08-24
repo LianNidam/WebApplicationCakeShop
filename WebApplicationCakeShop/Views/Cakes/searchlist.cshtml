@@ -1,0 +1,61 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model IEnumerable<WebApplicationCakeShop.Models.Cake>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<link href="~/css/cards.css" rel="stylesheet" />
+<h1 class="font-weight-lighter text-light">Cakes Found</h1>
+
+
+<br />
+<br />
+<div class="card-group card-goup">
+    <div class="row cardgrouprow">
+        @foreach (var item in Model)
+        {
+            <div class="col-sm collumn">
+                <div class="card btn-outline-dark btn-width">
+                    <a class="asp-style-card" asp-controller="Cakes" asp-action="Details" asp-route-id="@item.Id">
+                        <clickable>
+                            <img src=@item.PhotosUrl1 class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">@item.Title</h5>
+                            </div>
+                        </clickable>
+                    </a>
+                    <div class="card-footer">
+                        <h6 class="text-muted">Price - @item.Price ₪</h6>
+                        <form asp-controller="Carts" asp-action="AddToCart" asp-route-id="@item.Id" method="post">
+                            <button type="submit" class="btn btn-danger btn-sm card-background">
+                                Add To Cart
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+
+
+    </div>
+</div>
+@if (Model.ToList().Count == 0)
+{
+    <h5> Cakes not found... Create new cake</h5>
+}
+<br />
+<br />
+<div>
+    <a class="btn btn-secondary" asp-controller="Home" asp-action="Index">Return to home page</a>
+</div>
+
+
+
+
+
+
+

@@ -60,6 +60,16 @@ namespace WebApplicationCakeShop.Controllers
             }
             catch { return RedirectToAction("PageNotFound", "Home"); }
         }
+
+        public async Task<IActionResult> Search(string cakeName)
+        {
+            try
+            {
+                var LNidam = _context.Cake.Include(a => a.Category).Where(a => a.Category.Name.Contains(cakeName));
+                return View("searchlist", await LNidam.ToListAsync());
+            }
+            catch { return RedirectToAction("PageNotFound", "Home"); }
+        }
         //------upWorking
 
         // GET: Cakes/Details/5
@@ -105,7 +115,6 @@ namespace WebApplicationCakeShop.Controllers
         {
             try
             {
-
 
                 if (ModelState.IsValid)
                 {
