@@ -17,6 +17,7 @@
     <Folder Include="wwwroot\images\noBakingCar\" />
     <Folder Include="wwwroot\images\parveCar\" />
     <Folder Include="wwwroot\images\specCar\" />
+    <Folder Include="wwwroot\video\" />
   </ItemGroup>
 
 </Project>

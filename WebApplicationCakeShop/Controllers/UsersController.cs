@@ -68,6 +68,14 @@ namespace WebApplicationCakeShop.Controllers
         {
             return View();
         }
+        public IActionResult Register()
+        {
+            return View();
+        }
+        public IActionResult Search()
+        {
+            return View();
+        }
 
         //login post
         [HttpPost]
@@ -136,7 +144,7 @@ namespace WebApplicationCakeShop.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Username,Password,Firstname,Lastname,Address,Phone")] User user)
+        public async Task<IActionResult> Register([Bind("Id,Username,Password,Firstname,Lastname,Address,Phone")] User user)
         {
             //if (ModelState.IsValid)
             //{

@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using WebApplicationCakeShop.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace WebApplicationCakeShop
 {
@@ -29,6 +30,12 @@ namespace WebApplicationCakeShop
 
             services.AddDbContext<WebApplicationCakeShopContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("WebApplicationCakeShopContext")));
+
+            services.AddSession(options => { options.IdleTimeout = TimeSpan.FromMinutes(10); });
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options => {
+                options.LoginPath = "/Users/Login";
+                options.AccessDeniedPath = "/Home/AccessDenined";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +55,8 @@ namespace WebApplicationCakeShop
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseSession();
 
             app.UseAuthorization();
 
