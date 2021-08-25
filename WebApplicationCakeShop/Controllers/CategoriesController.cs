@@ -197,5 +197,38 @@ namespace WebApplicationCakeShop.Controllers
             }
             catch { return RedirectToAction("PageNotFound", "Home"); }
         }
+        public IActionResult Milky()
+        {
+            return View();
+        }
+
+        public IActionResult NoEggs()
+        {
+            return View();
+        }
+        public IActionResult Parve()
+        {
+            return View();
+        }
+        public IActionResult Special()
+        {
+            return View();
+        }
+
+        public IActionResult TheBestSelling()
+        {
+            return View();
+        }
+        public IActionResult Vegan()
+        {
+            return View();
+        }
+       
+        public IActionResult WithoutBaking()
+        {
+            return View();
+        }
+
+
     }
 }
