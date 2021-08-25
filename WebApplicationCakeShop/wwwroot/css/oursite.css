@@ -33,3 +33,13 @@
 .carousel {
     height: 50px;
 }
+
+#video{
+    position: relative;
+    right:1000px;
+}
+
+.control-label {
+    position: relative;
+    right: 200px;
+}

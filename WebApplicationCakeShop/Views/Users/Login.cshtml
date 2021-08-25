@@ -8,10 +8,11 @@
 <h1 class="font-weight-lighter text-light">Login</h1>
 
 <hr />
-@*<video src="~/video/pexels-artem-podrez-6824077.mp4" muted loop autoplay></video>*@
+@*<video src="~/video/pexels-artem-podrez-6824077.mp4"> muted loop autoplay></video>*@
 
-<div class="wrapper text-light">
-    <div class="col-md-4">
+
+<div class="wrapper text-dark">
+    <div style="margin-left" class="col-md-4">
         <form asp-action="Login">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -35,6 +36,8 @@
         {
             <div class="text-danger">@ViewBag.Error</div>
         }
+
+        <video width="400" height="400" autoplay loop muted src="~/video/pexels-artem-podrez-6824077.mp4"></video>
     </div>
 </div>
 
