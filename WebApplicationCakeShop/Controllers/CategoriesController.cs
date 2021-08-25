@@ -203,29 +203,26 @@ namespace WebApplicationCakeShop.Controllers
         }
         public async Task<IActionResult> NoEggs()
         {
-            return View(await _context.Cake.Where(x => x.CategoryId == 1).ToListAsync());
+            return View(await _context.Cake.Where(x => x.CategoryId == 2).ToListAsync());
         }
         public async Task<IActionResult> Parve()
         {
-            return View(await _context.Cake.Where(x => x.CategoryId == 1).ToListAsync());
+            return View(await _context.Cake.Where(x => x.CategoryId == 3).ToListAsync());
         }
         public async Task<IActionResult> Special()
         {
-            return View(await _context.Cake.Where(x => x.CategoryId == 1).ToListAsync());
+            return View(await _context.Cake.Where(x => x.CategoryId == 4).ToListAsync());
         }
-        public async Task<IActionResult> TheBestSelling()
-        {
-            return View(await _context.Cake.Where(x => x.CategoryId == 1).ToListAsync());
-        }
+        
 
         public async Task<IActionResult> Vegan()
         {
-            return View(await _context.Cake.Where(x => x.CategoryId == 1).ToListAsync());
+            return View(await _context.Cake.Where(x => x.CategoryId == 5).ToListAsync());
         }
 
         public async Task<IActionResult> WithoutBaking()
         {
-            return View(await _context.Cake.Where(x => x.CategoryId == 1).ToListAsync());
+            return View(await _context.Cake.Where(x => x.CategoryId == 6).ToListAsync());
         }
 
         
