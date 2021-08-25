@@ -1,0 +1,32 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+
+@{
+    ViewData["Title"] = "Access Denined";
+}
+
+<head>
+    <title>Access Denied</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <div class="w3-display-middle text-light">
+        <h1 class="w3-center w3-animate-right text-danger">
+            Access Denied.. 
+            for buying cakes you have to login or register
+        </h1>
+        <hr class="w3-border-white w3-animate-left hrStyle">
+        
+        <h6 class="w3-center w3-animate-zoom">
+            <a asp-controller="Users" asp-action="Login">click here to login</a> 
+            <a asp-controller="Users" asp-action="Register">click here to register</a> 
+        </h6>
+    </div>
+</body>

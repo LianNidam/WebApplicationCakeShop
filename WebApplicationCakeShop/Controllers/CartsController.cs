@@ -275,7 +275,7 @@ namespace WebApplicationCakeShop.Controllers
 
                 return View(cart);
             }
-            catch { return RedirectToAction("PageNotFound", "Home"); }
+            catch { return RedirectToAction("CartNotFound", "Carts"); }
         }
 
         [HttpPost, ActionName("AddToCart")]
@@ -363,6 +363,10 @@ namespace WebApplicationCakeShop.Controllers
             }
             catch { return RedirectToAction("PageNotFound", "Home"); }
         }
-        
+        public IActionResult CartNotFound()
+        {
+            return View();
+        }
+
     }
 }

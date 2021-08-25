@@ -37,10 +37,10 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent"  >
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">
+                        <a class="nav-link active" aria-current="page" asp-action="Index" asp-controller="Home" asp-area"">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
                                 <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" />
@@ -55,14 +55,28 @@
                             </svg>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li> <a class="btn-link text-dark" asp-action="Login" asp-controller="Users" asp-area="">Login</a></li>
-                            <li>
+                            @if (Context.User != null && Context.User.Claims != null && Context.User.Claims.Count() > 0)
+                            {
+                                <p class="nav-link text-dark">
+                                    Hello @Context.User.Identity.Name   
 
-                                <a class="dropdown-item" href="#">
-                                    Not registered yet?
-                                    <button type="button" class="btn btn-link" asp-action="Register" asp-controller="Users" asp-area="">Click here</button>
-                                </a>
-                            </li>
+                                    @*<a class="btn-link text-dark shopping-cart-button" asp-action="MyCart" asp-controller="Carts" asp-area="">
+                    <span class="fa fa-shopping-cart"></span>
+                    <span class="text"> Cart </span>
+                </a> |*@
+                                    <a class="btn-link text-dark" asp-action="LogOut" asp-controller="Users" asp-area="">LogOut</a>
+                                </p>
+
+                            }
+                            else
+                            {
+                                <p class="nav-link text-light">
+                                    <a class="btn-link text-dark" asp-action="Login" asp-controller="Users" asp-area="">Login</a> |
+                                    <a class="btn-link text-dark" asp-action="Register" asp-controller="Users" asp-area="">Register</a>
+                                </p>
+                            }
+                            </a>
+</li>
                             @*<li><a class="dropdown-item" href="#">Something else here</a></li>*@
                         </ul>
                     </li>
@@ -77,7 +91,7 @@
 
 
 
-    <!--first navbar - login -->
+    @*first navbar - login 
     <header class="navbar navbar-expand-lg login">
         <div class="nav-item container-fluid col-11 offset-10">
             @if (Context.User != null && Context.User.Claims != null && Context.User.Claims.Count() > 0)
@@ -107,7 +121,7 @@
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         </button>
 
-    </header>
+    </header>*@
 
 
     @*</header>*@
