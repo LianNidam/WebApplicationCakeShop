@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -23,9 +24,14 @@ namespace WebApplicationCakeShop.Controllers
         }
 
         // GET: Users
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
-            return View(await _context.User.ToListAsync());
+            try
+            {
+                return View(await _context.User.ToListAsync());
+            }
+            catch { return RedirectToAction("PageNotFound", "Home"); }
         }
 
         // GET: Users/Details/5
@@ -53,56 +59,40 @@ namespace WebApplicationCakeShop.Controllers
         //LogOut Option
         public async Task<IActionResult> Logout()
         {
-            //HttpContext.Session.Clear();
-
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-
-            return RedirectToAction("Login");
+            try
+            {
+                await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+                return RedirectToAction("Login");
+            }
+            catch { return RedirectToAction("PageNotFound", "Home"); }
         }
 
 
 
 
-        //LogIn Option
-        public IActionResult Login()
-        {
-            return View();
-        }
-        public IActionResult Register()
-        {
-            return View();
-        }
-        public IActionResult Search()
-        {
-            return View();
-        }
+       
 
         //login post
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login([Bind("Id,Username,Password")] User user)
+        public IActionResult Login([Bind("Id,Username,Password")] User user)
         {
 
-
-            //  if (ModelState.IsValid)
-            // {
-            var q = from u in _context.User
-                    where u.Username == user.Username && u.Password == user.Password
-                    select u;
-            if (q.Count() > 0)
+            try
             {
-
-
-                Signin(q.First());
-
-                return RedirectToAction(nameof(Index), "Home");
+                var q = _context.User.FirstOrDefault(u => u.Username == user.Username && u.Password == user.Password);
+                if (q != null)
+                {
+                    Signin(q);
+                    return RedirectToAction(nameof(Index), "Home");
+                }
+                else
+                {
+                    ViewData["Error"] = "Username and/or password are incorrect.";
+                    return View(user);
+                }
             }
-            else
-            {
-                ViewData["Error"] = "Error...";
-            }
-            //  }
-            return View(user);
+            catch { return RedirectToAction("PageNotFound", "Home"); }
         }
         //singin func post
 
@@ -119,7 +109,7 @@ namespace WebApplicationCakeShop.Controllers
 
             var authProperties = new AuthenticationProperties
             {
-                //ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(10)
+                
             };
 
             await HttpContext.SignInAsync(
@@ -129,16 +119,7 @@ namespace WebApplicationCakeShop.Controllers
         }
 
 
-        //You Don't have premotion..
-        public IActionResult AccessDenied()
-        {
-            return View();
-        }
-        // GET: Users/Register
-        public IActionResult Create()
-        {
-            return View();
-        }
+       
         // POST: Users/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -264,6 +245,30 @@ namespace WebApplicationCakeShop.Controllers
         private bool UserExists(int id)
         {
             return _context.User.Any(e => e.Id == id);
+        }
+
+        //LogIn Option
+        public IActionResult Login()
+        {
+            return View();
+        }
+        public IActionResult Register()
+        {
+            return View();
+        }
+        public IActionResult Search()
+        {
+            return View();
+        }
+        //You Don't have premotion..
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
+        // GET: Users/Register
+        public IActionResult Create()
+        {
+            return View();
         }
     }
 }
