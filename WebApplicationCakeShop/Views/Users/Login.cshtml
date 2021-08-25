@@ -8,10 +8,10 @@
 <h1 class="font-weight-lighter text-light">Login</h1>
 
 <hr />
-@*<video src="~/video/pexels-artem-podrez-6824077.mp4"> muted loop autoplay></video>*@
 
 
-<div class="wrapper text-dark">
+
+<div style="position:relative; top: 50px; left: 400px" class="wrapper text-dark">
     <div style="margin-left" class="col-md-4">
         <form asp-action="Login">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -28,8 +28,9 @@
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Login" class="btn btn-primary" />
+                <input type="submit" value="Login" class="btn btn-outline-info" />
             </div>
+
         </form>
         <!--Prevents duplication of users-->
         @if (ViewBag.Error != null)
@@ -37,9 +38,11 @@
             <div class="text-danger">@ViewBag.Error</div>
         }
 
-        <video width="400" height="400" autoplay loop muted src="~/video/pexels-artem-podrez-6824077.mp4"></video>
+
     </div>
 </div>
+<video style="position:relative; top: -227px; right:73px; " width="600" height="600" autoplay loop muted src="~/video/pexels-artem-podrez-6824077.mp4">
+</video>
 
 <p class="nameStyle">
     Not Registered Yet? <a asp-action="Register">Click Here</a> to register
