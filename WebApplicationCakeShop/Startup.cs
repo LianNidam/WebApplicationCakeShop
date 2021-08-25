@@ -30,6 +30,7 @@ namespace WebApplicationCakeShop
 
             services.AddDbContext<WebApplicationCakeShopContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("WebApplicationCakeShopContext")));
+                    
 
             services.AddSession(options => { options.IdleTimeout = TimeSpan.FromMinutes(10); });
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options => {
@@ -57,7 +58,7 @@ namespace WebApplicationCakeShop
             app.UseRouting();
 
             app.UseSession();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
