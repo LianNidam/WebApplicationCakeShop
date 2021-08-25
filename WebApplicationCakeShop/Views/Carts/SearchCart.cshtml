@@ -1,0 +1,39 @@
+﻿@model IEnumerable<WebApplicationCakeShop.Models.Cart>
+
+
+
+
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.Username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalPrice)
+        </td>
+        <td>
+            @foreach (var i in item.Cakes)
+            {
+                @Html.DisplayFor(modelItem => i.Title) <br />}
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cakes.Count)
+        </td>
+
+
+
+
+        <td>
+            <div class="btn-group">
+                <a class="btn btn-secondary" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                <a class="btn btn-secondary" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="fa fa-trash"></i></a>
+            </div>
+        </td>
+    </tr>
+}

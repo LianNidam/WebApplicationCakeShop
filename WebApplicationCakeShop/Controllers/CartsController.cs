@@ -114,29 +114,37 @@ namespace WebApplicationCakeShop.Controllers
         }
         //all good in here
 
-        // GET: Carts/Create
-        public IActionResult Create()
-        {
-            ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "Firstname");
-            return View();
-        }
 
-        // POST: Carts/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,UserId,TotalPrice")] Cart cart)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(cart);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "Firstname", cart.UserId);
-            return View(cart);
-        }
+        /// <summary>
+        /// we dont need a create cart
+        /// </summary>
+
+
+
+        // GET: Carts/Create
+        //public IActionResult Create()
+        //{
+        //    ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "Firstname");
+        //    return View();
+        //}
+
+        //// POST: Carts/Create
+        //// To protect from overposting attacks, enable the specific properties you want to bind to.
+        //// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create([Bind("Id,UserId,TotalPrice")] Cart cart)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.Add(cart);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    ViewData["UserId"] = new SelectList(_context.Set<User>(), "Id", "Firstname", cart.UserId);
+        //    return View(cart);
+        //}
+
 
         // GET: Carts/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -355,5 +363,6 @@ namespace WebApplicationCakeShop.Controllers
             }
             catch { return RedirectToAction("PageNotFound", "Home"); }
         }
+        
     }
 }
