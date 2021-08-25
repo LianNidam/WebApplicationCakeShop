@@ -7,7 +7,7 @@
 <h1>Index</h1>
 
 <br />
-<form asp-action="Search">
+<form asp-action="SearchCart">
     <input name="query" id="query" placeholder="Enter a value to search" autocomplete="off" />
     <input type="submit" value="search" class="btn btn-secondary" />
 </form>
@@ -58,3 +58,10 @@
         }
     </tbody>
 </table>
+
+
+@section Scripts{
+
+    <script src="~/js/SearchCart.js"></script>
+
+}
