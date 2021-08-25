@@ -85,10 +85,6 @@
                 </li>
                 </ul>
 
-
-
-
-
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 
@@ -100,12 +96,12 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
                                 <li><a class="dropdown-item" asp-action="AllCakes" asp-controller="Categories" asp-area="">כל העוגות</a></li>
-                                <li><a class="dropdown-item" href="#">חלבי</a></li>
-                                <li><a class="dropdown-item" href="#">פרווה</a></li>
-                                <li><a class="dropdown-item" href="#">ללא ביצים</a></li>
-                                <li><a class="dropdown-item" href="#">ללא אפייה</a></li>
-                                <li><a class="dropdown-item" href="#">טבעוני</a></li>
-                                <li><a class="dropdown-item" href="#">ספיישלים</a></li>
+                                <li><a class="dropdown-item" asp-action="Milky" asp-controller="Categories" asp-area="">חלבי</a></li>
+                                <li><a class="dropdown-item" asp-action="Parve" asp-controller="Categories" asp-area="" >פרווה</a></li>
+                                <li><a class="dropdown-item" asp-action="NoEggs" asp-controller="Categories" asp-area="" >ללא ביצים</a></li>
+                                <li><a class="dropdown-item" asp-action="WithoutBaking" asp-controller="Categories" asp-area="" >ללא אפייה</a></li>
+                                <li><a class="dropdown-item" asp-action="Vegan" asp-controller="Categories" asp-area="" >טבעוני</a></li>
+                                <li><a class="dropdown-item" asp-action="Special" asp-controller="Categories" asp-area="" >ספיישלים</a></li>
                             </ul>
                         </li>
                     </ul>
