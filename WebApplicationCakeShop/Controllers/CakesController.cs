@@ -65,7 +65,7 @@ namespace WebApplicationCakeShop.Controllers
         {
             try
             {
-                var LNidam = _context.Cake.Include(a => a.Category).Where(a => a.Category.Name.Contains(cakeName));
+                var LNidam = _context.Cake.Include(a => a.Title).Where(a => a.Title.Contains(cakeName));
                 return View("searchlist", await LNidam.ToListAsync());
             }
             catch { return RedirectToAction("PageNotFound", "Home"); }
