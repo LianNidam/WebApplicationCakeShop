@@ -43,6 +43,7 @@ namespace WebApplicationCakeShop.Models
         public string Lastname { get; set; }
 
         //adress for email adreess
+        [Display(Name = "Email Adress")]
         [DataType(DataType.EmailAddress)]
         public string Address { get; set; }
 

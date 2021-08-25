@@ -197,37 +197,38 @@ namespace WebApplicationCakeShop.Controllers
             }
             catch { return RedirectToAction("PageNotFound", "Home"); }
         }
-        public IActionResult Milky()
+        public async Task<IActionResult> Milky()
         {
-            return View();
+            return View(await _context.Cake.Where(x => x.CategoryId == 1).ToListAsync());
+        }
+        public async Task<IActionResult> NoEggs()
+        {
+            return View(await _context.Cake.Where(x => x.CategoryId == 1).ToListAsync());
+        }
+        public async Task<IActionResult> Parve()
+        {
+            return View(await _context.Cake.Where(x => x.CategoryId == 1).ToListAsync());
+        }
+        public async Task<IActionResult> Special()
+        {
+            return View(await _context.Cake.Where(x => x.CategoryId == 1).ToListAsync());
+        }
+        public async Task<IActionResult> TheBestSelling()
+        {
+            return View(await _context.Cake.Where(x => x.CategoryId == 1).ToListAsync());
         }
 
-        public IActionResult NoEggs()
+        public async Task<IActionResult> Vegan()
         {
-            return View();
-        }
-        public IActionResult Parve()
-        {
-            return View();
-        }
-        public IActionResult Special()
-        {
-            return View();
+            return View(await _context.Cake.Where(x => x.CategoryId == 1).ToListAsync());
         }
 
-        public IActionResult TheBestSelling()
+        public async Task<IActionResult> WithoutBaking()
         {
-            return View();
+            return View(await _context.Cake.Where(x => x.CategoryId == 1).ToListAsync());
         }
-        public IActionResult Vegan()
-        {
-            return View();
-        }
-       
-        public IActionResult WithoutBaking()
-        {
-            return View();
-        }
+
+        
 
 
     }
