@@ -4,13 +4,13 @@
 @{ ViewData["Title"] = "Milky Cakes"; }
 @model IEnumerable<WebApplicationCakeShop.Models.Cake>
 
-<h1 class="font-weight-lighter text-light">Milky Cakes</h1>
+<h1 class="font-weight-bolder">קטגוריית חלבי </h1>
 <div class="card-group">
     <div class="row cardgrouprow">
         @foreach (var item in Model)
         {
-<div class="col-sm collumn">
-    <div class="card btn-outline-dark btn-width">
+<div class="col-sm collumn" style="">
+    <div class="card btn-outline-light btn-group-vertical">
         <a class="asp-style-card" asp-controller="Cakes" asp-action="Details" asp-route-id="@item.Id">
             <clickable>
                 <img src=@item.PhotosUrl1 class="card-img-top">
@@ -19,10 +19,11 @@
                 </div>
             </clickable>
         </a>
+
         <div class="card-footer">
             <h6 class="text-muted">Price - @item.Price ₪</h6>
             <form asp-controller="Carts" asp-action="AddToCart" asp-route-id="@item.Id" method="post">
-                <button type="submit" class="btn btn-danger btn-sm card-background">
+                <button type="submit" class="btn btn-light btn-sm card-background">
                     Add To Cart
                 </button>
             </form>
