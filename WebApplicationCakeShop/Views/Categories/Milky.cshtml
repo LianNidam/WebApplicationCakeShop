@@ -9,8 +9,8 @@
     <div class="row cardgrouprow">
         @foreach (var item in Model)
         {
-<div class="col-sm collumn" style="">
-    <div class="card btn-outline-light btn-group-vertical">
+<div  class="col-sm collumn" >
+    <div  class="card btn-outline-light btn-group-vertical">
         <a class="asp-style-card" asp-controller="Cakes" asp-action="Details" asp-route-id="@item.Id">
             <clickable>
                 <img src=@item.PhotosUrl1 class="card-img-top">
