@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -39,7 +40,7 @@ namespace WebApplicationCakeShop.Controllers
         //------upWorking
 
         //[Authorize(Roles = "Admin")]
-        public async Task<IActionResult> SearchPtable(string query)
+        public async Task<IActionResult> SearchTable(string query)
         {
             try
             {
@@ -50,7 +51,7 @@ namespace WebApplicationCakeShop.Controllers
         }
         //------upWorking
 
-        public async Task<IActionResult> Search(string cakeName, string price, string category)
+        public async Task<IActionResult> Search1(string cakeName, string price, string category)
         {
             try
             {
@@ -61,16 +62,31 @@ namespace WebApplicationCakeShop.Controllers
             catch { return RedirectToAction("PageNotFound", "Home"); }
         }
 
-        public async Task<IActionResult> Search(string cakeName)
+        public async Task<IActionResult> Search(string cakeName, string jsut)
         {
             try
             {
-                var LNidam = _context.Cake.Include(a => a.Title).Where(a => a.Title.Contains(cakeName));
+                var LNidam = _context.Cake.Include(a => a.Title).Where(a => a.Title.Contains(cakeName) || a.Body.Contains(cakeName));
                 return View("searchlist", await LNidam.ToListAsync());
             }
             catch { return RedirectToAction("PageNotFound", "Home"); }
         }
         //------upWorking
+
+
+        public async Task<IActionResult> Search(string queryTitle)
+        {
+            var q = from a in _context.Cake.Include(a => a.Title)
+                    where (a.Title.Contains(queryTitle) )
+                    orderby a.Title descending
+                    select a; 
+
+            var m2MWithSearchContext = _context.Cake.Include(a => a.Category).Where(a => (a.Title.Contains(queryTitle) || queryTitle == null) );
+            return View("Index", await m2MWithSearchContext.ToListAsync());
+        }
+
+
+
 
         // GET: Cakes/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -263,6 +279,100 @@ namespace WebApplicationCakeShop.Controllers
             return _context.Cake.Any(e => e.Id == id);
         }
 
+
+        [HttpGet]
+        //[Authorize(Roles = "Admin")]
+        public ActionResult Statistics()
+        {
+            try
+            {
+                //statistic-1- what is the most "popular" cakes\
+                ICollection<Stat> statistic1 = new Collection<Stat>();
+                var result = from p in _context.Cake.Include(o => o.Carts)
+                             where (p.Carts.Count) > 0
+                             orderby (p.Carts.Count) descending
+                             select p;
+                foreach (var v in result)
+                {
+                    statistic1.Add(new Stat(v.Title, v.Carts.Count()));
+                }
+
+                ViewBag.data1 = statistic1;
+
+                //finish first statistic
+                //statistic 2-what is the most common age of the users
+                ICollection<Stat> statistic2 = new Collection<Stat>();
+                List<User> users = _context.User.ToList();
+                int currentYear = DateTime.Today.Year;
+                Dictionary<int, int> result2 = new Dictionary<int, int>();
+                //foreach (User item in users)
+                //{
+                //    if (!result2.ContainsKey(currentYear - item.Age.Year))
+                //    {
+                //        result2.Add(currentYear - item.Age.Year, 1);
+                //    }
+                //    else
+                //    {
+                //        int count = result2.GetValueOrDefault(currentYear - item.Age.Year) + 1;
+                //        result2.Remove(currentYear - item.Age.Year);
+                //        result2.Add(currentYear - item.Age.Year, count);
+                //    }
+
+                //}
+
+                foreach (var v in result2.OrderBy(k => k.Key))
+                {
+                    if (v.Value > 0)
+                    {
+                        statistic2.Add(new Stat(v.Key.ToString(), v.Value));
+                    }
+                }
+
+
+                ViewBag.data2 = statistic2;
+
+
+
+                //statistic-3- what category hava the biggest number of games
+                ICollection<Stat> statistic3 = new Collection<Stat>();
+                List<Cake> cakes = _context.Cake.ToList();
+                List<Category> categories = _context.Category.ToList();
+                var result3 = from prod in cakes
+                              join cat in categories on prod.CategoryId equals cat.Id
+                              group cat by cat.Id into G
+                              select new { id = G.Key, num = G.Count() };
+
+                var porqua = from popo in result3
+                             join cat in categories on popo.id equals cat.Id
+                             select new { category = cat.Name, count = popo.num };
+                foreach (var v in porqua)
+                {
+                    if (v.count > 0)
+                        statistic3.Add(new Stat(v.category, v.count));
+                }
+
+                ViewBag.data3 = statistic3;
+                return View();
+            }
+            catch { return RedirectToAction("PageNotFound", "Home"); }
+        }
+
+
+
+
+
     }
 
+
+}
+
+public class Stat
+{
+    public string Key;
+    public int Values;
+    public Stat(string key, int values)
+    {
+        Key = key;
+        Values = values;
+    }
 }

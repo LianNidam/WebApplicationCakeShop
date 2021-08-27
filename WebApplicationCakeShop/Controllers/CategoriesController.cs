@@ -225,7 +225,7 @@ namespace WebApplicationCakeShop.Controllers
             return View(await _context.Cake.Where(x => x.CategoryId == 6).ToListAsync());
         }
 
-        
+
 
 
     }
