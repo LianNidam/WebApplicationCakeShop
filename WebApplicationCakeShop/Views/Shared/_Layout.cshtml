@@ -21,7 +21,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-
+       
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -56,9 +56,9 @@
                                     Hello @Context.User.Identity.Name
 
                                     @*<a class="btn-link text-dark shopping-cart-button" asp-action="MyCart" asp-controller="Carts" asp-area="">
-                                            <span class="fa fa-shopping-cart"></span>
-                                            <span class="text"> Cart </span>
-                                        </a> |*@
+                                <span class="fa fa-shopping-cart"></span>
+                                <span class="text"> Cart </span>
+                            </a> |*@
                                     <a class="btn-link text-dark" asp-action="LogOut" asp-controller="Users" asp-area="">LogOut</a>
                                 </p>
 
@@ -123,11 +123,11 @@
     </div>
 
 
-    @*<footer class="border-top footer text-muted">
-            <div class="container">
-                &copy; 2021 - WebApplicationCakeShop - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-            </div>
-        </footer>*@
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - WebApplicationCakeShop - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
