@@ -24,7 +24,7 @@ namespace WebApplicationCakeShop.Controllers
 
 
         // GET: Cakes
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             //var webApplicationCakeShopContext = _context.Cake.Include(c => c.Category);

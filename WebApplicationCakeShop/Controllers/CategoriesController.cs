@@ -199,19 +199,19 @@ namespace WebApplicationCakeShop.Controllers
         }
         public async Task<IActionResult> Milky()
         {
-            return View(await _context.Cake.Where(x => x.CategoryId == 1).ToListAsync());
+            return View(await _context.Cake.Where(x => x.CategoryId == 9).ToListAsync());
         }
         public async Task<IActionResult> NoEggs()
         {
-            return View(await _context.Cake.Where(x => x.CategoryId == 2).ToListAsync());
+            return View(await _context.Cake.Where(x => x.CategoryId == 10).ToListAsync());
         }
         public async Task<IActionResult> Parve()
         {
-            return View(await _context.Cake.Where(x => x.CategoryId == 3).ToListAsync());
+            return View(await _context.Cake.Where(x => x.CategoryId == 7).ToListAsync());
         }
         public async Task<IActionResult> Special()
         {
-            return View(await _context.Cake.Where(x => x.CategoryId == 4).ToListAsync());
+            return View(await _context.Cake.Where(x => x.CategoryId == 8).ToListAsync());
         }
         
 
