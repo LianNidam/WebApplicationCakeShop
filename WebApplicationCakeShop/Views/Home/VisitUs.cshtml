@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head id="back">
+    <title>Add Map</title>
+  
+</head>
+<body>
+    <link rel="stylesheet" href="~/css/VisitUs.css" />
+    <div id="map"></div>
+    <script>
+        function initMap() {
+            var location = { lat: 31.969635, lng: 34.771430 };
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 15,
+                center: location,
+            });
+            const marker = new google.maps.Marker({
+                position: location,
+                map: map,
+            });
+        }
+    </script>
+
+    <h1 class="font-weight-lighter text-dark">Visit Us</h1>
+    <div id="map"></div>
+    @*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEH5pxHbLx8svq5PgO4k1tOdljRjXcM4I&callback=initMap&libraries=&v=weekly"
+        async></script>*@
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEH5pxHbLx8svq5PgO4k1tOdljRjXcM4I&callback=initMap"></script>
+
+</body>
+</html>

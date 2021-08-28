@@ -62,7 +62,7 @@ namespace WebApplicationCakeShop.Controllers
             catch { return RedirectToAction("PageNotFound", "Home"); }
         }
 
-        public async Task<IActionResult> Search(string cakeName, string jsut)
+        public async Task<IActionResult> Search3(string cakeName, string jsut)
         {
             try
             {
@@ -74,15 +74,27 @@ namespace WebApplicationCakeShop.Controllers
         //------upWorking
 
 
+        //public async Task<IActionResult> Search(string queryTitle)
+        //{
+        //    var q = from a in _context.Cake.Include(a => a.Title)
+        //            where (a.Title.Contains(queryTitle) )
+        //            orderby a.Title descending
+        //            select a; 
+
+        //    var m2MWithSearchContext = _context.Cake.Include(a => a.Category.Cakes).Where(a => (a.Title.Contains(queryTitle)) );
+        //    return View("Index", await m2MWithSearchContext.ToListAsync());
+        //}
+
+
         public async Task<IActionResult> Search(string queryTitle)
         {
-            var q = from a in _context.Cake.Include(a => a.Title)
+            var q = from a in _context.Cake.Include(a => a.Category)
                     where (a.Title.Contains(queryTitle) )
                     orderby a.Title descending
-                    select a; 
+                    select a;
 
-            var m2MWithSearchContext = _context.Cake.Include(a => a.Category).Where(a => (a.Title.Contains(queryTitle) || queryTitle == null) );
-            return View("Index", await m2MWithSearchContext.ToListAsync());
+            var CakeShophContext = _context.Cake.Include(a => a.Category).Where(a => (a.Title.Contains(queryTitle)));
+            return View("Index", await CakeShophContext.ToListAsync());
         }
 
 

@@ -33,5 +33,13 @@ namespace WebApplicationCakeShop.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        public IActionResult VisitUs()
+        {
+            return View();
+        }
+        public IActionResult FaceBook()
+        {
+            return View();
+        }
     }
 }
