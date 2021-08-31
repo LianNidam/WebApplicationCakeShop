@@ -10,7 +10,7 @@
 
 
 
-<h1 class="fontruby-weight-dark text-dark">My Cake Cart</h1>
+<h1 class="font-weight-bolder">My Cart</h1>
 
 <form asp-action="Search">
     <input name="query" placeholder="Enter a value to search" />
@@ -69,8 +69,9 @@
 
 
 
-<button class="btn btn-success" data-toggle="modal" data-target="#pay">Pay Now</button>
+<button class="btn btn-info" data-toggle="modal" data-target="#pay">Pay Now</button>
 
+@*<link rel="stylesheet" href="~/css/PayCart.css" />*@
 <div class="modal" id="pay" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="container" id="payment">
         <div class="creditCardInfo">
@@ -167,7 +168,7 @@
                 </div>
                 <hr />
                 <div class="submitBtn">
-                    <input class="btn btn-success" value="Pay" type="submit" asp-controller="Carts" asp-action="AfterPayment" />
+                    <input class="btn btn-light" value="Pay" type="submit" asp-controller="Carts" asp-action="AfterPayment" />
                 </div>
             </form>
         </div>
