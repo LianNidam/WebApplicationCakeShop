@@ -22,9 +22,10 @@ namespace WebApplicationCakeShop.Controllers
         }
         //working
 
+   
 
         // GET: Cakes
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             //var webApplicationCakeShopContext = _context.Cake.Include(c => c.Category);
@@ -45,32 +46,32 @@ namespace WebApplicationCakeShop.Controllers
             try
             {
                 var applicationDbContext = _context.Cake.Include(p => p.Category);
-                return PartialView(await applicationDbContext.Where(p => p.Category.Name.Contains(query)).ToListAsync());//check the Name
+                return PartialView(await applicationDbContext.Where(p => p.Category.Name.Contains(query)).ToListAsync());
             }
             catch { return RedirectToAction("PageNotFound", "Home"); }
         }
         //------upWorking
 
-        public async Task<IActionResult> Search1(string cakeName, string price, string category)
-        {
-            try
-            {
-                int p = Int32.Parse(price);
-                var applicationDbContext = _context.Cake.Include(a => a.Category).Where(a => a.Category.Name.Contains(cakeName) && a.Category.Name.Equals(category) && a.Price <= p);
-                return View("searchlist", await applicationDbContext.ToListAsync());
-            }
-            catch { return RedirectToAction("PageNotFound", "Home"); }
-        }
+        //public async Task<IActionResult> Search1(string cakeName, string price, string category)
+        //{
+        //    try
+        //    {
+        //        int p = Int32.Parse(price);
+        //        var applicationDbContext = _context.Cake.Include(a => a.Category).Where(a => a.Category.Name.Contains(cakeName) && a.Category.Name.Equals(category) && a.Price <= p);
+        //        return View("searchlist", await applicationDbContext.ToListAsync());
+        //    }
+        //    catch { return RedirectToAction("PageNotFound", "Home"); }
+        //}
 
-        public async Task<IActionResult> Search3(string cakeName, string jsut)
-        {
-            try
-            {
-                var LNidam = _context.Cake.Include(a => a.Title).Where(a => a.Title.Contains(cakeName) || a.Body.Contains(cakeName));
-                return View("searchlist", await LNidam.ToListAsync());
-            }
-            catch { return RedirectToAction("PageNotFound", "Home"); }
-        }
+        //public async Task<IActionResult> Search3(string cakeName, string jsut)
+        //{
+        //    try
+        //    {
+        //        var LNidam = _context.Cake.Include(a => a.Title).Where(a => a.Title.Contains(cakeName) || a.Body.Contains(cakeName));
+        //        return View("searchlist", await LNidam.ToListAsync());
+        //    }
+        //    catch { return RedirectToAction("PageNotFound", "Home"); }
+        //}
         //------upWorking
 
 
@@ -86,17 +87,17 @@ namespace WebApplicationCakeShop.Controllers
         //}
 
 
-        public async Task<IActionResult> Search(string queryTitle)
+        public async Task<IActionResult> Search(string cakename)
         {
-            var q = from a in _context.Cake.Include(a => a.Category)
-                    where (a.Title.Contains(queryTitle) )
-                    orderby a.Title descending
-                    select a;
-
-            var CakeShophContext = _context.Cake.Include(a => a.Category).Where(a => (a.Title.Contains(queryTitle)));
-            return View("Index", await CakeShophContext.ToListAsync());
+            try
+            {
+               
+                var applicationDbContext = _context.Cake.Include(a => a.Category).Where(a => a.Title.Contains(cakename));
+                return View("Index", await applicationDbContext.ToListAsync());
+            }
+            catch { return RedirectToAction("PageNotFound", "Home"); }
         }
-
+       
 
 
 
@@ -125,7 +126,7 @@ namespace WebApplicationCakeShop.Controllers
         //------upWorking
 
         // GET: Cakes/Create
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             ViewData["CategoryId"] = new SelectList(_context.Set<Category>(), "Id", "Name");
@@ -369,6 +370,7 @@ namespace WebApplicationCakeShop.Controllers
             catch { return RedirectToAction("PageNotFound", "Home"); }
         }
 
+        
 
 
 

@@ -7,7 +7,7 @@
 <h1>Index</h1>
 
 <br />
-<form asp-action="Search">
+<form asp-action="SearchTable">
     <input name="query" id="query" placeholder="Enter a value to search" autocomplete="off" />
     <input type="submit" value="search" class="btn btn-secondary" />
 </form>
@@ -50,9 +50,9 @@
                     @Html.DisplayFor(modelItem => item.Price)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a  class="btn btn-primary asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a  class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                 </td>
             </tr>
         }

@@ -5,21 +5,18 @@
 @{
     ViewData["Title"] = "My Cart";
 }
-<link rel="stylesheet" href="~/css/Table.css">
-<link rel="stylesheet" href="~/css/payment.css">
+<link rel="stylesheet" href="~/css/Labels.css">
+<link rel="stylesheet" href="~/css/PayCart.css">
 
 
 
-<h1 class="font-weight-lighter text-light">My Cake Cart</h1>
+<h1 class="fontruby-weight-dark text-dark">My Cake Cart</h1>
 
 <form asp-action="Search">
     <input name="query" placeholder="Enter a value to search" />
     <input type="submit" value="search" class="btn btn-primary" />
 </form>
 <table class="table-striped styleTable">
-
-
-
 
     <thead>
         <tr>
@@ -31,9 +28,6 @@
                 <p>Price</p>
             </th>
     </thead>
-
-
-
 
     <tbody>
         @foreach (var item in Model.Cakes)
@@ -60,7 +54,6 @@
 
 
 
-
     <thead>
         <tr>
             <th>
@@ -72,9 +65,6 @@
         </tr>
     </thead>
 </table>
-
-
-
 
 
 
