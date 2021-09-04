@@ -235,6 +235,19 @@ namespace WebApplicationCakeShop.Controllers
 
 
 
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Search(string query)
+        {
+            try
+            {
+                return Json(await _context.Category.Where(c => c.Name.Contains(query)).ToListAsync());
+            }
+            catch { return RedirectToAction("PageNotFound", "Home"); }
+        }
+
+
+
+
 
     }
 }

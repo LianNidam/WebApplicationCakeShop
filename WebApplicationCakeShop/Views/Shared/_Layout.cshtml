@@ -85,7 +85,7 @@
                         </svg>
                     </a>
                 </li>
-                
+
 
 
                 <li class="nav-item">
@@ -125,10 +125,14 @@
                 </div>
 
 
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button type="submit" class="btn btn-outline-info" asp-controller="Cakes" asp-action="Search" asp-area="">Search</button>
+                <form asp-controller="Cakes" asp-action="Search1" class="d-flex">
+
+                    <input class="form-control me-2" type="text" name="SearchString" placeholder="Search" aria-label="Search">
+                    <button type="submit" class="btn btn-outline-info">Search</button>
+
                 </form>
+
+
             </div>
         </div>
     </nav>

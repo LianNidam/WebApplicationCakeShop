@@ -52,52 +52,6 @@ namespace WebApplicationCakeShop.Controllers
         }
         //------upWorking
 
-        //public async Task<IActionResult> Search1(string cakeName, string price, string category)
-        //{
-        //    try
-        //    {
-        //        int p = Int32.Parse(price);
-        //        var applicationDbContext = _context.Cake.Include(a => a.Category).Where(a => a.Category.Name.Contains(cakeName) && a.Category.Name.Equals(category) && a.Price <= p);
-        //        return View("searchlist", await applicationDbContext.ToListAsync());
-        //    }
-        //    catch { return RedirectToAction("PageNotFound", "Home"); }
-        //}
-
-        //public async Task<IActionResult> Search3(string cakeName, string jsut)
-        //{
-        //    try
-        //    {
-        //        var LNidam = _context.Cake.Include(a => a.Title).Where(a => a.Title.Contains(cakeName) || a.Body.Contains(cakeName));
-        //        return View("searchlist", await LNidam.ToListAsync());
-        //    }
-        //    catch { return RedirectToAction("PageNotFound", "Home"); }
-        //}
-        //------upWorking
-
-
-        //public async Task<IActionResult> Search(string queryTitle)
-        //{
-        //    var q = from a in _context.Cake.Include(a => a.Title)
-        //            where (a.Title.Contains(queryTitle) )
-        //            orderby a.Title descending
-        //            select a; 
-
-        //    var m2MWithSearchContext = _context.Cake.Include(a => a.Category.Cakes).Where(a => (a.Title.Contains(queryTitle)) );
-        //    return View("Index", await m2MWithSearchContext.ToListAsync());
-        //}
-
-
-        public async Task<IActionResult> Search(string cakename)
-        {
-            try
-            {
-               
-                var applicationDbContext = _context.Cake.Include(a => a.Category).Where(a => a.Title.Contains(cakename));
-                return View("Index", await applicationDbContext.ToListAsync());
-            }
-            catch { return RedirectToAction("PageNotFound", "Home"); }
-        }
-       
 
 
 
@@ -160,6 +114,35 @@ namespace WebApplicationCakeShop.Controllers
         //------upWorking
 
 
+
+        //[Authorize(Roles = "Admin")]
+        public async Task<IActionResult> SearchPtable(string query)
+        {
+            try
+            {
+                var applicationDbContext = _context.Cake.Include(p => p.Category);
+                return PartialView(await applicationDbContext.Where(p => p.Title.Contains(query)).ToListAsync());
+            }
+            catch { return RedirectToAction("PageNotFound", "Home"); }
+        }
+
+
+
+      
+
+
+        public async Task<IActionResult> Search1(string searchString)
+        {
+            var cakes = from m in _context.Cake
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                cakes = cakes.Where(s => s.Title.Contains(searchString));
+            }
+
+            return View("searchlist", await cakes.ToListAsync());
+        }
 
         // GET: Cakes/Edit/5
         // [Authorize(Roles = "Admin")]
@@ -294,7 +277,7 @@ namespace WebApplicationCakeShop.Controllers
 
 
         [HttpGet]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Statistics()
         {
             try
@@ -369,8 +352,6 @@ namespace WebApplicationCakeShop.Controllers
             }
             catch { return RedirectToAction("PageNotFound", "Home"); }
         }
-
-        
 
 
 
